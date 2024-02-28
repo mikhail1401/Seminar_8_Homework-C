@@ -94,9 +94,50 @@ void SmallestSumRow(int[,] array)
             minRowIndex = row;
         }
     }
-    Console.WriteLine($"\nIndex of the row with the smallest sum is [{minRowIndex}] and its sum is {minRowSum}");
+    Console.WriteLine($"Index of the row with the smallest sum is [{minRowIndex}] and its sum is {minRowSum}");
 }
 
 FillArray(matrix56);
 PrintArray(matrix56);
 SmallestSumRow(matrix56);
+
+
+Console.WriteLine("\nTask 58");
+// Задайте две матрицы. Напишите программу, которая
+// будет находить произведение двух матриц.
+
+Console.Write("Enter a number of rows for the 1st matrix: ");
+int rowsNum581 = Convert.ToInt32(Console.ReadLine());
+Console.Write("Enter a number of columns for the 2nd matrix: ");
+int columnsNum581 = Convert.ToInt32(Console.ReadLine());
+
+Console.Write("Enter a number of rows for the 2st matrix: ");
+int rowsNum582 = Convert.ToInt32(Console.ReadLine());
+Console.Write("Enter a number of columns for the 2nd matrix");
+int columnsNum582 = Convert.ToInt32(Console.ReadLine());
+
+int[,] matrix581 = new int[rowsNum581, columnsNum581];
+int[,] matrix582 = new int[rowsNum582, columnsNum582];
+
+// The result matrix will have the same numbers of rows as the 1st matrix
+// and the same number of columns as the 2nd matrix.
+
+void MatrixMultiplication(int[,] array1, int[,] array2)
+{
+    if(array1.GetLength(1)!=array2.GetLength(0))
+    {
+        Console.WriteLine("The multiplication is not possible");
+    }
+    else
+    {
+        int[,] matrix = new int[array1.GetLength(0); array2.GetLength(1)];
+        for (int row=0; row<matrix.GetLength(0); row++)
+        {
+            for (int column=0; column<matrix.GetLength(1); column++)
+            {
+                matrix[row, column] = array1[]
+            }
+        }
+    }
+}
+
