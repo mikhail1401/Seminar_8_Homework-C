@@ -113,11 +113,14 @@ int columnsNum581 = Convert.ToInt32(Console.ReadLine());
 
 Console.Write("Enter a number of rows for the 2st matrix: ");
 int rowsNum582 = Convert.ToInt32(Console.ReadLine());
-Console.Write("Enter a number of columns for the 2nd matrix");
+Console.Write("Enter a number of columns for the 2nd matrix: ");
 int columnsNum582 = Convert.ToInt32(Console.ReadLine());
 
 int[,] matrix581 = new int[rowsNum581, columnsNum581];
 int[,] matrix582 = new int[rowsNum582, columnsNum582];
+
+// 2 matrices can be multipled if the number of columns in the 1st matrix
+// is equal to the rows in the 2nd matrix.
 
 // The result matrix will have the same numbers of rows as the 1st matrix
 // and the same number of columns as the 2nd matrix.
@@ -130,14 +133,46 @@ void MatrixMultiplication(int[,] array1, int[,] array2)
     }
     else
     {
-        int[,] matrix = new int[array1.GetLength(0); array2.GetLength(1)];
-        for (int row=0; row<matrix.GetLength(0); row++)
+        int[,] matrix3 = new int[array1.GetLength(0), array2.GetLength(1)];
+        for (int row3=0; row3<matrix3.GetLength(0); row3++)
         {
-            for (int column=0; column<matrix.GetLength(1); column++)
+            for (int column3=0; column3<matrix3.GetLength(1); column3++)
             {
-                matrix[row, column] = array1[]
+                
+                // Extracting the row for multiplication from the 1st array
+                int[] rowToMultiple = new int[array1.GetLength(1)];
+                for (int column1=0; column1<array1.GetLength(1); column1++)
+                    {
+                    rowToMultiple[column1] = array1[row3, column1];
+                    }
+                // Extracting the column for multiplication from the 2nd array
+                int[] columnToMultiple = new int[array2.GetLength(0)];
+                for (int row2=0; row2<array2.GetLength(0); row2++)
+                {
+                    columnToMultiple[row2] = array2[row2, column3];
+                }
+                
+                // Making multiplication for the current matrix3 element
+                int result = 0;
+                for (int i=0; i<rowToMultiple.Length; i++)
+                {
+                    result += rowToMultiple[i] * columnToMultiple[i];
+                }
+                matrix3[row3, column3] = result;
+
+                Console.Write(matrix3[row3, column3] + " ");
             }
+            Console.WriteLine();
         }
     }
 }
+
+FillArray(matrix581);
+FillArray(matrix582);
+Console.WriteLine("matrix1: ");
+PrintArray(matrix581);
+Console.WriteLine("matrix2: ");
+PrintArray(matrix582);
+Console.WriteLine("Multiplication result: ");
+MatrixMultiplication(matrix581, matrix582);
 
