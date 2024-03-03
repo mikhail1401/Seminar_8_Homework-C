@@ -176,3 +176,40 @@ PrintArray(matrix582);
 Console.WriteLine("Multiplication result: ");
 MatrixMultiplication(matrix581, matrix582);
 
+
+Console.WriteLine("\nTask 60");
+// Сформулируйте трёхмерный массив из неповторяющихся
+// двузначных чисел. Напшиите программу, которая будет построчно
+// выводить массив, добавляя индексы кжадого элемента
+
+// Three-demensinoal array SYNTAX:
+// int[,,] array3 = new int[x, y, z];
+
+// There are only 90 two-digit numbers
+// We need to ensure the array has 90 elements
+bool valid = false;
+int x=0, y=0, z=0;
+while (!valid)
+{
+    x = new Random().Next(1, 46);
+    y = new Random().Next(1, 46);
+    z = new Random().Next(1, 46);
+    if(x*y*z == 90) valid = true;
+}
+
+Console.WriteLine($"This array dimensions will be x={x}, y={y}, z={z}");
+int[,,] cube = new int[x, y, z];
+
+for (int a=0; a<cube.GetLength(0); a++)
+{
+    for (int b=0; b<cube.GetLength(1); b++)
+    {
+        for (int c=0; c<cube.GetLength(2); c++)
+        {
+            Console.Write(cube[a, b, c] + " ");
+        }
+        Console.WriteLine();
+    }
+    Console.WriteLine();
+}
+
