@@ -200,16 +200,49 @@ while (!valid)
 Console.WriteLine($"This array dimensions will be x={x}, y={y}, z={z}");
 int[,,] cube = new int[x, y, z];
 
-for (int a=0; a<cube.GetLength(0); a++)
+void Fill3dArray(int[,,] array)
 {
-    for (int b=0; b<cube.GetLength(1); b++)
+    int count = 0;
+    int[] usedNumbers = new int[90];
+    int randomNumber = 0;
+    while (count<90)
     {
-        for (int c=0; c<cube.GetLength(2); c++)
+        randomNumber = new Random().Next(10, 91);
+        if (!usedNumbers.Contains(randomNumber))
         {
-            Console.Write(cube[a, b, c] + " ");
+            usedNumbers[count] = randomNumber;
+            count++;
+        }
+    }
+    count=0;
+    for (int a=0; a<array.GetLength(0); a++)
+    {
+        for (int b=0; b<array.GetLength(1); b++)
+        {
+            for (int c=0; c<array.GetLength(2); c++)
+            {
+                array[a, b, c] = usedNumbers[count];
+                count++;
+            }
+        }
+    }
+}
+
+void Print3dArray(int[,,] array)
+{
+    for (int a=0; a<array.GetLength(0); a++)
+    {
+        for (int b=0; b<array.GetLength(1); b++)
+        {
+            for (int c=0; c<array.GetLength(2); c++)
+            {
+                Console.Write($"{array[a, b, c]}[{a}, {b}, {c}] ");
+            }
+            Console.WriteLine();
         }
         Console.WriteLine();
     }
-    Console.WriteLine();
 }
 
+Fill3dArray(cube);
+Print3dArray(cube);
