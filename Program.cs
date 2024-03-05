@@ -187,62 +187,120 @@ Console.WriteLine("\nTask 60");
 
 // There are only 90 two-digit numbers
 // We need to ensure the array has 90 elements
-bool valid = false;
-int x=0, y=0, z=0;
-while (!valid)
-{
-    x = new Random().Next(1, 46);
-    y = new Random().Next(1, 46);
-    z = new Random().Next(1, 46);
-    if(x*y*z == 90) valid = true;
-}
+// bool valid = false;
+// int x=0, y=0, z=0;
+// while (!valid)
+// {
+//     x = new Random().Next(1, 46);
+//     y = new Random().Next(1, 46);
+//     z = new Random().Next(1, 46);
+//     if(x*y*z == 90) valid = true;
+// }
 
-Console.WriteLine($"This array dimensions will be x={x}, y={y}, z={z}");
-int[,,] cube = new int[x, y, z];
+// Console.WriteLine($"This array dimensions will be x={x}, y={y}, z={z}");
+// int[,,] cube = new int[x, y, z];
 
-void Fill3dArray(int[,,] array)
+// void Fill3dArray(int[,,] array)
+// {
+//     int count = 0;
+//     int[] usedNumbers = new int[90];
+//     int randomNumber = 0;
+//     while (count<90)
+//     {
+//         randomNumber = new Random().Next(10, 91);
+//         if (!usedNumbers.Contains(randomNumber))
+//         {
+//             usedNumbers[count] = randomNumber;
+//             count++;
+//         }
+//     }
+//     count=0;
+//     for (int a=0; a<array.GetLength(0); a++)
+//     {
+//         for (int b=0; b<array.GetLength(1); b++)
+//         {
+//             for (int c=0; c<array.GetLength(2); c++)
+//             {
+//                 array[a, b, c] = usedNumbers[count];
+//                 count++;
+//             }
+//         }
+//     }
+// }
+
+// void Print3dArray(int[,,] array)
+// {
+//     for (int a=0; a<array.GetLength(0); a++)
+//     {
+//         for (int b=0; b<array.GetLength(1); b++)
+//         {
+//             for (int c=0; c<array.GetLength(2); c++)
+//             {
+//                 Console.Write($"{array[a, b, c]}[{a}, {b}, {c}] ");
+//             }
+//             Console.WriteLine();
+//         }
+//         Console.WriteLine();
+//     }
+// }
+
+// Fill3dArray(cube);
+// Print3dArray(cube);
+
+
+Console.WriteLine("\nTask 62");
+// Заоплните спирально массив 4 на 4
+
+int side = 4;
+int[,] array62 = new int[side, side];
+
+void FillFourArraySpiral(int[,] array)
 {
-    int count = 0;
-    int[] usedNumbers = new int[90];
-    int randomNumber = 0;
-    while (count<90)
+    int value = 1;
+    int minColumn = 0;
+    int minRow = 0;
+    int maxColumn = array.GetLength(1)-1;
+    int maxRow = array.GetLength(0)-1;
+    
+    while (value<=16)
     {
-        randomNumber = new Random().Next(10, 91);
-        if (!usedNumbers.Contains(randomNumber))
+        for (int i=minColumn; i<=maxColumn; i++)
         {
-            usedNumbers[count] = randomNumber;
-            count++;
+            array[minRow, i] = value;
+            value++;
         }
-    }
-    count=0;
-    for (int a=0; a<array.GetLength(0); a++)
-    {
-        for (int b=0; b<array.GetLength(1); b++)
-        {
-            for (int c=0; c<array.GetLength(2); c++)
-            {
-                array[a, b, c] = usedNumbers[count];
-                count++;
-            }
-        }
-    }
-}
+        minRow++;
 
-void Print3dArray(int[,,] array)
-{
-    for (int a=0; a<array.GetLength(0); a++)
-    {
-        for (int b=0; b<array.GetLength(1); b++)
+        for (int i=minRow; i<=maxRow; i++)
         {
-            for (int c=0; c<array.GetLength(2); c++)
-            {
-                Console.Write($"{array[a, b, c]}[{a}, {b}, {c}] ");
-            }
-            Console.WriteLine();
+            array[i, maxColumn] = value;
+            value++;
+        }
+        maxColumn--;
+
+        for (int i=maxColumn; i>=minColumn; i--)
+        {
+            array[maxRow, i] = value;
+            value++;
+        }
+        maxRow--;
+
+        for (int i=maxRow; i>=minRow; i--)
+        {
+            array[i, minColumn] = value;
+            value++;
+        }
+        minColumn++;
+    }
+
+    for (int row=0; row<array.GetLength(0); row++)
+    {
+        for (int column=0; column<array.GetLength(1); column++)
+        {
+            Console.Write(array[row, column] + " ");
         }
         Console.WriteLine();
     }
 }
 
-Fill3dArray(cube);
-Print3dArray(cube);
+FillFourArraySpiral(array62);
